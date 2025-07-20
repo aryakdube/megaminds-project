@@ -1,0 +1,50 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Lambda/deployment artifacts
+*.zip
+
+# Virtualenvs
+venv/
+.venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# IDE/editor stuff
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Terraform state files
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/.terraform.lock.hcl
+terraform/terraform.tfvars
+
+# Logs
+*.log
+
+# Unit test/coverage
+.tox/
+.coverage
+.cache
+.pytest_cache/
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment/config
+.env

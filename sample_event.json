@@ -1,0 +1,10 @@
+{
+  "user_id": "user_013",
+  "event_type": "signup",
+  "event_timestamp": "2025-07-21T08:15:30Z",
+  "details": {
+    "signup_method": "email",
+    "email": "user13@example.com",
+    "referral_code": "REF2025"
+  }
+}

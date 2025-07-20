@@ -1,0 +1,52 @@
+name: Deploy Lambdas
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    # Processor Lambda
+    - name: Zip processor_lambda
+      run: |
+        cd processor_lambda
+        zip -r ../processor_lambda.zip .
+
+    # Report Lambda
+    - name: Zip report_lambda
+      run: |
+        cd report_lambda
+        zip -r ../report_lambda.zip .
+
+    # AWS credentials
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    # Deploy processor_lambda
+    - name: Deploy processor_lambda to Lambda
+      run: |
+        aws lambda update-function-code \
+          --function-name <YOUR_PROCESSOR_LAMBDA_FUNCTION_NAME> \
+          --zip-file fileb://processor_lambda.zip
+
+    # Deploy report_lambda
+    - name: Deploy report_lambda to Lambda
+      run: |
+        aws lambda update-function-code \
+          --function-name <YOUR_REPORT_LAMBDA_FUNCTION_NAME> \
+          --zip-file fileb://report_lambda.zip
