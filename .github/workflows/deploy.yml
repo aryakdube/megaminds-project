@@ -41,12 +41,13 @@ jobs:
     - name: Deploy processor_lambda to Lambda
       run: |
         aws lambda update-function-code \
-          --function-name <YOUR_PROCESSOR_LAMBDA_FUNCTION_NAME> \
+          --function-name event-processor-fn \
           --zip-file fileb://processor_lambda.zip
 
     # Deploy report_lambda
     - name: Deploy report_lambda to Lambda
       run: |
         aws lambda update-function-code \
-          --function-name <YOUR_REPORT_LAMBDA_FUNCTION_NAME> \
+          --function-name daily-report-fn \
           --zip-file fileb://report_lambda.zip
+
